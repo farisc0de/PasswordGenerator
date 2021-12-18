@@ -21,6 +21,20 @@
       <div class="container pb-5 pt-5">
         <div class="row justify-content-center">
           <div class="col-sm-12 col-md-8 col-lg-4">
+            <div>
+              <?php if (isset($_GET['error']) && $_GET['error'] == "1") : ?>
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>Oh snap!</strong> <a href="#" class="alert-link">Select a few things up</a> and try again.
+                </div>
+              <?php endif; ?>
+              <?php if (isset($_GET['error']) && $_GET['error'] == "2") : ?>
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>Oh snap!</strong> <a href="#" class="alert-link">Write the desired length</a> and try again.
+                </div>
+              <?php endif; ?>
+            </div>
             <div class="card bg-dark mb-3">
               <div class="card-header text-center">
                 <b>Generate a new password</b>
