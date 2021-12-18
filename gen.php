@@ -1,35 +1,60 @@
 <?php
 session_start();
 
-if ($_POST['lower'] == "on") {
-    $lowercase = range('a', 'z');
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $ch = [];
+
+    if ($_POST['lower'] == "on") {
+        $lower = range('a', 'z');
+        foreach ($lower as $lw) {
+            array_push($ch, $lw);
+        }
+    }
+
+    if ($_POST['upper'] == "on") {
+        $upper = range('A', 'Z');
+        foreach ($upper as $ur) {
+            array_push($ch, $ur);
+        }
+    }
+
+    if ($_POST['numbers'] == "on") {
+        $numbers = range(0, 9);
+        foreach ($numbers as $nb) {
+            array_push($ch, $nb);
+        }
+    }
+
+    if ($_POST['special'] == "on") {
+        $special = ['!', '@', '#', '$', '%', '^', '&', '*'];
+        foreach ($special as $sh) {
+            array_push($ch, $sh);
+        }
+    }
+
+    if ($ch == []) {
+        header("Location: index.php?error=1");
+        exit;
+    }
+
+    $length = $_POST['length'];
+
+    if ($length == '') {
+        header("Location: index.php?error=2");
+        exit;
+    }
+
+    $password = [];
+
+    for ($i = 0; $i <= $length; $i++) {
+        $int = rand(0, count($ch) - 1);
+        array_push($password, $ch[$int]);
+    }
+
+    if ($password != []) {
+        $_SESSION['password'] = implode("", $password);
+
+        header("Location: index.php");
+        exit;
+    }
 }
-
-if ($_POST['upper'] == "on") {
-    $uppercase = range('A', 'Z');
-}
-
-if ($_POST['numbers'] == "on") {
-    $digits = range(0, 9);
-}
-
-if ($_POST['special'] == "on") {
-    $special = ['!', '@', '#', '$', '%', '^', '&', '*'];
-}
-
-$ch = array_merge($lowercase, $uppercase, $digits, $special);
-
-$length = $_POST['length'];
-
-$password = array();
-
-for ($i = 0; $i <= $length; $i++) {
-    $int = rand(0, count($ch) - 1);
-    array_push($password, $ch[$int]);
-}
-
-$_SESSION['password'] = implode("", $password);
-
-header("Location: index.php");
-
-exit;
