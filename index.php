@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php include_once "gen.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -22,13 +22,13 @@
         <div class="row justify-content-center">
           <div class="col-sm-12 col-md-8 col-lg-4">
             <div>
-              <?php if (isset($_GET['error']) && $_GET['error'] == "1") : ?>
+              <?php if (isset($error) && $error == "1") : ?>
                 <div class="alert alert-dismissible alert-danger">
                   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   <strong>Oh snap!</strong> <a href="#" class="alert-link">Select a few things up</a> and try again.
                 </div>
               <?php endif; ?>
-              <?php if (isset($_GET['error']) && $_GET['error'] == "2") : ?>
+              <?php if (isset($error) && $error == "2") : ?>
                 <div class="alert alert-dismissible alert-danger">
                   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   <strong>Oh snap!</strong> <a href="#" class="alert-link">Write the desired length</a> and try again.
@@ -41,9 +41,9 @@
               </div>
               <div class="card-body">
 
-                <form role="form" method="POST" action="gen.php">
+                <form role="form" method="POST">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password" value="<?php echo $_SESSION['password'] ?>">
+                    <input type="text" class="form-control" placeholder="Password" value="<?php echo $_password; ?>">
                   </div>
 
 
@@ -100,4 +100,3 @@
 </html>
 
 </html>
-<?php session_destroy(); ?>
