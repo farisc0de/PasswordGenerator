@@ -82,7 +82,7 @@
 
               <div class="card-footer">
                 <div class="text-center">
-                  Developed By: <a href="https://github.com/farisd3v/">fariscode</a>
+                  Developed By: <a href="https://github.com/farisc0de/">fariscode</a>
                 </div>
               </div>
             </div>
