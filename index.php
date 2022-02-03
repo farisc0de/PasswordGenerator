@@ -47,7 +47,7 @@
                   </div>
 
 
-                  <div class="form-check form-switch">
+                  <div class="form-check form-switch mt-4">
                     <input class="form-check-input" type="checkbox" name="lower">
                     <label class="form-check-label">Lowercase Letters</label>
                   </div>
@@ -68,9 +68,10 @@
                     <label class="form-check-label">Special Characters</label>
                   </div>
 
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="length" placeholder="Length">
-                  </div>
+                  <fieldset class="form-group mt-3">
+                    <input type="range" class="form-range" value="8" min="8" max="50" step="1" name="length" oninput="this.nextElementSibling.value = this.value">
+                    Length: <output>8</output>
+                  </fieldset>
 
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary mt-4">

@@ -39,13 +39,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($length == '') {
         $error = 1;
     } else {
-        for ($i = 0; $i <= $length; $i++) {
-            $int = rand(0, count($ch) - 1);
-            array_push($password, $ch[$int]);
-        }
+        $_password = random_str($length, $ch);
+    }
+}
+
+function random_str($length = 64, $keyspace)
+{
+    $keyspace = implode('', $keyspace);
+    $keyspace = str_shuffle($keyspace);
+
+    $pieces = [];
+
+    $max = mb_strlen($keyspace, '8bit') - 1;
+
+    for ($i = 0; $i < $length; ++$i) {
+        $pieces[] = $keyspace[random_int(0, $max)];
     }
 
-    if ($password != []) {
-        $_password = implode("", $password);
-    }
+    return implode('', $pieces);
 }
