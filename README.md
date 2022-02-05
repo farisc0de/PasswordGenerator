@@ -1,9 +1,10 @@
 # PasswordGenerator
+
 PHP Password Generator with custom settings
 
 ## Screenshots
 
-![](https://i.imgur.com/V3Es35X.png)
+![](https://f.top4top.io/p_2227iqn2c1.png)
 
 ## License
 
