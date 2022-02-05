@@ -3,28 +3,26 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $ch = '';
 
-    if ($_POST['lower'] == "on") {
+    if ($_POST['lower']) {
         $ch .= implode('', range('a', 'z'));
     }
 
-    if ($_POST['upper'] == "on") {
+    if ($_POST['upper']) {
         $ch .= implode('', range('A', 'Z'));
     }
 
-    if ($_POST['numbers'] == "on") {
+    if ($_POST['numbers']) {
         $ch .= implode('', range(0, 9));
     }
 
-    if ($_POST['special'] == "on") {
+    if ($_POST['special']) {
         $special = ['!', '@', '#', '$', '%', '^', '&', '*', '-', '+', '?', '/', '(', ')'];
         $ch .= implode('', $special);
     }
 
-    if (!$ch == '') {
-        $length = $_POST['length'];
-    }
+    $length = $_POST['length'];
 
-    if (!$length == '') {
+    if ($ch && $length) {
         $_password = random_str($length, $ch);
     }
 
